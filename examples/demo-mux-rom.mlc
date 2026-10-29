@@ -1,0 +1,30 @@
+# MiniLogisim project file
+# 示例二: 4 选 1 多路选择器 + ROM 查表
+VERSION 1
+CIRCUIT name="main"
+  WIRE pts="130,110;300,110"
+  WIRE pts="130,190;280,190;280,130;300,130"
+  WIRE pts="130,150;300,150"
+  WIRE pts="130,230;270,230;270,170;300,170"
+  WIRE pts="180,330;330,330;330,180"
+  WIRE pts="360,120;450,120"
+  WIRE pts="450,120;530,120"
+  COMP id=1 type=0 x=100 y=100 face=0 bits=1 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=1 sub=-1 label="A" text=""
+  COMP id=2 type=0 x=100 y=140 face=0 bits=1 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="B" text=""
+  COMP id=3 type=0 x=100 y=180 face=0 bits=1 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=1 sub=-1 label="C" text=""
+  COMP id=4 type=0 x=100 y=220 face=0 bits=1 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="D" text=""
+  COMP id=5 type=0 x=150 y=320 face=0 bits=2 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="Sel" text=""
+  COMP id=6 type=13 x=300 y=100 face=0 bits=1 inputs=2 sel=2 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="MUX" text=""
+  COMP id=7 type=1 x=450 y=110 face=0 bits=1 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="Y" text=""
+  COMP id=8 type=3 x=530 y=110 face=0 bits=1 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="" text=""
+  COMP id=9 type=31 x=100 y=50 face=0 bits=1 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="4 选 1 多路选择器: 数据输入自上而下为 A / C / B / D，Sel 选择输出" text=""
+  COMP id=10 type=31 x=100 y=380 face=0 bits=1 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="提示: 用查探工具点击 Sel 引脚可切换选择端，Shift+点击可按位循环" text=""
+ENDCIRCUIT
+CIRCUIT name="ROM查表"
+  WIRE pts="130,110;160,110;160,130;200,130"
+  WIRE pts="300,130;400,130"
+  COMP id=1 type=0 x=100 y=100 face=0 bits=4 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=3 sub=-1 label="Addr" text=""
+  COMP id=2 type=25 x=200 y=100 face=0 bits=8 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="" text="7E 30 6D 79 33 5B 5F 70 7F 7B 77 1F 4E 3D 4F 47"
+  COMP id=3 type=1 x=400 y=120 face=0 bits=8 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="D" text=""
+  COMP id=4 type=31 x=100 y=50 face=0 bits=1 inputs=2 sel=1 addr=4 fan=2 bw=1 flags=0 val=0 sub=-1 label="ROM 查表: 4 位地址译成七段码(共阴)" text=""
+ENDCIRCUIT

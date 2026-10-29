@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{4C1D8A22-7E45-4B9A-8F31-9A2C6E5D1B77}</ProjectGuid>
+    <RootNamespace>SimTest</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Label="wxWidgets">
+    <WX_ROOT Condition="'$(WX_ROOT)'==''">C:\wxWidgets-3.2.2.1</WX_ROOT>
+    <WX_LIBDIR Condition="'$(WX_LIBDIR)'==''">$(WX_ROOT)\lib\vc_x64_lib</WX_LIBDIR>
+    <WX_SUFFIX Condition="'$(WX_SUFFIX)'==''">ud</WX_SUFFIX>
+    <WX_CSFX Condition="'$(WX_CSFX)'==''">d</WX_CSFX>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(ProjectDir)..\bin\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\obj\SimTest\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>false</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>WIN32;_CONSOLE;__WXMSW__;_UNICODE;UNICODE;NOPCH;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(WX_ROOT)\include;$(WX_LIBDIR)\msw$(WX_SUFFIX);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(WX_LIBDIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxmsw32$(WX_SUFFIX)_core.lib;wxbase32$(WX_SUFFIX).lib;wxregex$(WX_SUFFIX).lib;wxpng$(WX_CSFX).lib;wxjpeg$(WX_CSFX).lib;wxtiff$(WX_CSFX).lib;wxzlib$(WX_CSFX).lib;wxexpat$(WX_CSFX).lib;comctl32.lib;rpcrt4.lib;shlwapi.lib;version.lib;ws2_32.lib;wininet.lib;oleacc.lib;uxtheme.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="simtest.cpp" />
+    <ClCompile Include="..\src\LogicModel.cpp" />
+    <ClCompile Include="..\src\Simulator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\LogicModel.h" />
+    <ClInclude Include="..\src\Simulator.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

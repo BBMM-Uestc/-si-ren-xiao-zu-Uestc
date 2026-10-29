@@ -1,0 +1,3 @@
+// MiniLogisim 资源脚本
+// 引入 wxWidgets 标准资源(含 comctl32 v6 清单，保证控件使用现代主题外观)
+#include "wx/msw/wx.rc"

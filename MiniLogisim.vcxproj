@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{8E4B2E9A-6F3C-4A1E-9C7B-2D5A8F1B6C42}</ProjectGuid>
+    <RootNamespace>LogicSim</RootNamespace>
+    <!-- 生成的 exe 名字。改这里即可换软件名(工程文件名保持不变) -->
+    <TargetName>逻辑电路仿真器</TargetName>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+
+  <!-- ============================================================
+       wxWidgets 3.2.2.1 (x64 / Unicode / static libs / MSVC v143)
+       如果你的 wxWidgets 安装位置不同，改下面这一行即可，
+       或者设置环境变量 wxWidgets_ROOT_DIR。
+       ============================================================ -->
+  <PropertyGroup Label="wxWidgets">
+    <WX_ROOT Condition="'$(WX_ROOT)'=='' AND '$(wxWidgets_ROOT_DIR)'!=''">$(wxWidgets_ROOT_DIR)</WX_ROOT>
+    <WX_ROOT Condition="'$(WX_ROOT)'==''">C:\wxWidgets-3.2.2.1</WX_ROOT>
+    <WX_LIBDIR Condition="'$(WX_LIBDIR)'==''">$(WX_ROOT)\lib\vc_x64_lib</WX_LIBDIR>
+    <!-- 本机 wxWidgets 只编译了 Debug/Unicode/x64 静态库 (*ud.lib)。
+         若你另外编译了 Release 库，把下面 WX_SUFFIX 设为空串、WX_CSFX 设为空串
+         并把 RuntimeLibrary 改为 MultiThreadedDLL 即可。 -->
+    <WX_SUFFIX Condition="'$(WX_SUFFIX)'==''">ud</WX_SUFFIX>
+    <WX_CSFX Condition="'$(WX_CSFX)'==''">d</WX_CSFX>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>false</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;__WXMSW__;_UNICODE;UNICODE;NOPCH;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(WX_ROOT)\include;$(WX_LIBDIR)\msw$(WX_SUFFIX);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(WX_LIBDIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxmsw32$(WX_SUFFIX)_core.lib;wxbase32$(WX_SUFFIX).lib;wxmsw32$(WX_SUFFIX)_adv.lib;wxregex$(WX_SUFFIX).lib;wxpng$(WX_CSFX).lib;wxjpeg$(WX_CSFX).lib;wxtiff$(WX_CSFX).lib;wxzlib$(WX_CSFX).lib;wxexpat$(WX_CSFX).lib;comctl32.lib;rpcrt4.lib;shlwapi.lib;version.lib;ws2_32.lib;wininet.lib;oleacc.lib;uxtheme.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(WX_ROOT)\include;$(WX_ROOT)\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <!-- Release 复用了本机唯一可用的 Debug 版 wxWidgets 静态库。
+       想做真正的 Release：先用 nmake /f makefile.vc BUILD=release 生成
+       wxbase32u.lib 等，然后把 WX_SUFFIX 置空、RuntimeLibrary 改为 MultiThreadedDLL。 -->
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <ClCompile Include="src\*.cpp" />
+    <ClInclude Include="src\*.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\app.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

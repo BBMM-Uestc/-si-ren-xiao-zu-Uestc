@@ -1,0 +1,8 @@
+# 统一换行与二进制识别，避免 Windows 下反复出现 CRLF 警告
+* text=auto
+
+*.png binary
+*.ico binary
+*.jpg binary
+*.exe binary
+*.lib binary

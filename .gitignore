@@ -1,0 +1,40 @@
+# ---- 编译产物（不进仓库）----
+bin/
+obj/
+build_tmp/
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.exp
+*.tlog
+*.lastbuildstate
+*.obj
+*.res
+*.idb
+*.ipdb
+*.iobj
+
+# ---- Visual Studio ----
+.vs/
+.vscode/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+*.rsuser
+ipch/
+
+# ---- 临时/日志 ----
+assert.log
+*.log
+*.tmp
+*.bak
+Thumbs.db
+desktop.ini
+
+# ---- 个人草稿（按需启用）----
+# scratch/
