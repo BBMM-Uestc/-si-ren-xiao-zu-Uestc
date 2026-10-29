@@ -1,0 +1,49 @@
+# .github/CODEOWNERS
+#
+# 作用：当 PR 改动某组文件时，GitHub 会自动把对应负责人加为 reviewer。
+# 用法：
+#   1. 把下面的 @A-user / @B-user / @C-user / @D-user 换成四个人的 GitHub 用户名；
+#   2. 去掉行首的 "# " 取消注释；
+#   3. 提交到 main 分支后才会生效（CODEOWNERS 只在目标分支上生效）。
+#
+# 四板块划分见 docs/小组分工与Git规范.md
+
+# ---- A 数据模型与工程文件 ----
+# /src/LogicModel.h       @A-user
+# /src/LogicModel.cpp     @A-user
+# /src/LogicModel.h       @B-user @C-user @D-user    ← 公共契约，改动需全员 review
+
+# ---- B 仿真内核与质量 ----
+# /src/Simulator.h        @B-user
+# /src/Simulator.cpp      @B-user
+# /tools/                 @B-user
+
+# ---- C 渲染与画布交互 ----
+# /src/Renderer.h         @C-user
+# /src/Renderer.cpp       @C-user
+# /src/CanvasPanel.h      @C-user
+# /src/CanvasPanel.cpp    @C-user
+
+# ---- D 界面框架与面板 ----
+# /src/MainFrame.h        @D-user
+# /src/MainFrame.cpp      @D-user
+# /src/App.h              @D-user
+# /src/App.cpp            @D-user
+# /src/ToolBoxPanel.h     @D-user
+# /src/ToolBoxPanel.cpp   @D-user
+# /src/SidePanel.h        @D-user
+# /src/SidePanel.cpp      @D-user
+# /src/Dialogs.h          @D-user
+# /src/Dialogs.cpp        @D-user
+# /src/CustomLibDialog.h  @D-user
+# /src/CustomLibDialog.cpp @D-user
+# /src/Ids.h              @D-user
+
+# ---- 公共文件 ----
+# /MiniLogisim.sln        @A-user
+# /MiniLogisim.vcxproj    @A-user
+# /build.bat              @D-user
+# /README.md              @A-user
+# /docs/                  @A-user
+# /examples/              @A-user
+# /.github/CODEOWNERS     @A-user
