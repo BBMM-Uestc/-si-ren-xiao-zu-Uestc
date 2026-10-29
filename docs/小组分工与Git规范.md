@@ -81,8 +81,21 @@ main            ← 永远可编译、可运行、可演示，受保护
 5. 合并前：本地 `F7` 编译通过 + `bin\Debug\SimTest.exe` 全过
 6. PR 至少 **1 人 review**；涉及 `LogicModel.h` 的结构改动**要 2 人**
 
-### 3.3 提交信息格式
+**分支已建好**（都从 `main` 拉出，clone 后直接可切）：
 
+| 分支 | 板块 |
+|---|---|
+| `feat/a-model` | A 数据模型与工程文件 |
+| `feat/b-sim` | B 仿真内核与质量 |
+| `feat/c-canvas` | C 渲染与画布交互 |
+| `feat/d-ui` | D 界面框架与面板 |
+
+`git switch feat/a-model` 会自动建立本地分支并跟踪 `origin/feat/a-model`。
+
+`.github/CODEOWNERS` 里已放好映射模板：把 `@A-user` 等换成各自的 GitHub 用户名、去掉行首 `#`，
+之后 PR 改动某个板块的文件时 GitHub 会自动指派对应 reviewer。
+
+### 3.3 提交信息格式
 ```
 <类型>(<板块>): <做了什么>
 
@@ -118,11 +131,11 @@ cd logic-sim
 git config user.name  "你的名字"
 git config user.email "you@example.com"
 
-# 3. 建自己的分支
-git switch -c feat/a-model        # A
-#  git switch -c feat/b-sim        B
-#  git switch -c feat/c-canvas     C
-#  git switch -c feat/d-ui         D
+# 3. 切到自己的板块分支（四个分支仓库里已经建好，clone 下来直接切）
+git switch feat/a-model        # A 数据模型
+#  git switch feat/b-sim        B 仿真内核
+#  git switch feat/c-canvas     C 渲染与画布
+#  git switch feat/d-ui         D 界面框架
 
 # 4. 日常循环
 git add -A
